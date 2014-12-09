@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.google.android.glass.media.Sounds;
-import com.google.android.glass.touchpad.Gesture;
 import com.google.android.glass.touchpad.GestureDetector;
 import com.google.android.glass.widget.CardBuilder;
 import com.google.android.glass.widget.CardScrollView;
