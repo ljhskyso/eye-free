@@ -1,29 +1,32 @@
 package coolis.glasstest;
 
-import com.google.android.glass.media.Sounds;
-import com.google.android.glass.widget.CardBuilder;
-import com.google.android.glass.widget.CardScrollAdapter;
-import com.google.android.glass.widget.CardScrollView;
-
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+import com.google.android.glass.media.Sounds;
+import com.google.android.glass.touchpad.GestureDetector;
+import com.google.android.glass.widget.CardBuilder;
+import com.google.android.glass.widget.CardScrollView;
+
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+
+import coolis.glasstest.adapter.DeveloperAdapter;
 
 /**
  * An {@link Activity} showing a tuggable "Hello World!" card.
@@ -36,6 +39,12 @@ import java.util.UUID;
  * @see <a href="https://developers.google.com/glass/develop/gdk/touch">GDK Developer Guide</a>
  */
 public class MainActivity extends Activity {
+
+    private static final String[] WEAR_GESTURE_CODE = {"RIGHT", "LEFT", "DOWN", "UP"};
+    private Toast toast;
+    private List<CardBuilder> mCards;
+    private GestureDetector mGestureDetector;
+
 
     /**
      * {@link CardScrollView} to use as the main content view.
@@ -54,44 +63,61 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
-        mView = buildView();
+//        mView = buildView();
 
         mCardScroller = new CardScrollView(this);
-        mCardScroller.setAdapter(new CardScrollAdapter() {
-            @Override
-            public int getCount() {
-                return 1;
-            }
-
-            @Override
-            public Object getItem(int position) {
-                return mView;
-            }
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                return mView;
-            }
-
-            @Override
-            public int getPosition(Object item) {
-                if (mView.equals(item)) {
-                    return 0;
-                }
-                return AdapterView.INVALID_POSITION;
-            }
-        });
+//        mCardScroller.setAdapter(new CardScrollAdapter() {
+//            @Override
+//            public int getCount() {
+//                return 1;
+//            }
+//
+//            @Override
+//            public Object getItem(int position) {
+//                return mView;
+//            }
+//
+//            @Override
+//            public View getView(int position, View convertView, ViewGroup parent) {
+//                return mView;
+//            }
+//
+//            @Override
+//            public int getPosition(Object item) {
+//                if (mView.equals(item)) {
+//                    return 0;
+//                }
+//                return AdapterView.INVALID_POSITION;
+//            }
+//        });
         // Handle the TAP event.
         mCardScroller.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // Plays disallowed sound to indicate that TAP actions are not supported.
                 AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-                am.playSoundEffect(Sounds.DISALLOWED);
+                am.playSoundEffect(Sounds.SELECTED);
+
+                String[] url = {getString(R.string.url_google), getString(R.string.url_cnn), getString(R.string.url_nytimes)};
+
+
+                openOnlineWebsite(url[position]);
             }
         });
+
+
+        mCards = new ArrayList<CardBuilder>();
+        createCards();
+        mCardScroller.setAdapter(new DeveloperAdapter(mCards));
+
         setContentView(mCardScroller);
+
+
         new Thread(reader).start();
+
+        toast = Toast.makeText(MainActivity.this, "Starting the APP...", Toast.LENGTH_LONG);
+        toast.show();
+
     }
 
     @Override
@@ -126,7 +152,8 @@ public class MainActivity extends Activity {
         public void run() {
             UUID uuid = UUID.fromString("4e5d48e0-75df-11e3-981f-0800200c9a66");
             try {
-                BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();;
+                BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
+                ;
                 Set<BluetoothDevice> pairedDevices = adapter.getBondedDevices();
                 Log.e("Paired Device:", Integer.toString(pairedDevices.size()));
                 if (pairedDevices.size() > 0) {
@@ -143,12 +170,12 @@ public class MainActivity extends Activity {
                         byte[] buffer = new byte[bufferSize];
                         Log.e("Client tracking", "Start reading");
                         //Keep reading the messages while connection is open...
-                        while(CONTINUE_READ_WRITE){
+                        while (CONTINUE_READ_WRITE) {
                             final StringBuilder sb = new StringBuilder();
                             bytesRead = is.read(buffer);
                             if (bytesRead != -1) {
                                 String result = "";
-                                while ((bytesRead == bufferSize) && (buffer[bufferSize-1] != 0)){
+                                while ((bytesRead == bufferSize) && (buffer[bufferSize - 1] != 0)) {
                                     result = result + new String(buffer, 0, bytesRead - 1);
                                     bytesRead = is.read(buffer);
                                 }
@@ -156,19 +183,105 @@ public class MainActivity extends Activity {
                                 sb.append(result);
                             }
                             android.util.Log.e("Client tracking", "Read: " + sb.toString());
+
+//                            Handle Input Commands
+                            wearGestureHandler(Integer.parseInt(sb.toString()));
+
+
                             //Show message on UIThread
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(MainActivity.this, sb.toString(), Toast.LENGTH_LONG).show();
+
+                                    String s = "Receive command: " + WEAR_GESTURE_CODE[Integer.parseInt(sb.toString())];
+
+                                    if (toast.getView().getWindowToken() != null) {
+                                        toast.cancel();
+                                    }
+
+                                    toast.setText(s);
+                                    toast.show();
                                 }
                             });
+
                         }
                     }
                 }
 
-            } catch (Exception e) {e.printStackTrace();}
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     };
+
+
+    //    --------------------------------------------
+    private void openOnlineWebsite(String url) {
+        Log.d("webview", "Starting openOnlineWebsite");
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        intent.setClassName("com.google.glass.browser", "com.google.glass.browser.WebBrowserActivity");
+        startActivity(intent);
+
+        Log.d("webview", "Ending openOnlineWebsite");
+
+    }
+
+    private void createCards() {
+
+//        for (int i = 0; i < url.length; i++) {
+//            CardBuilder card = new CardBuilder(this, CardBuilder.Layout.COLUMNS_FIXED);
+//            card.setIcon(draw[i]);
+//            card.setText(name[i]);
+//            card.setTimestamp(url[i]);
+//            mCards.add(card);
+//        }
+
+        //        Google
+        CardBuilder card = new CardBuilder(this, CardBuilder.Layout.COLUMNS_FIXED);
+        card.setIcon(R.drawable.google);
+        card.setText(R.string.name_google);
+        card.setTimestamp(R.string.url_google);
+        mCards.add(card);
+
+        //        CNN
+        card = new CardBuilder(this, CardBuilder.Layout.COLUMNS_FIXED);
+        card.setIcon(R.drawable.cnn);
+        card.setText(R.string.name_cnn);
+        card.setTimestamp(R.string.url_cnn);
+        mCards.add(card);
+
+        //        NYTimes
+        card = new CardBuilder(this, CardBuilder.Layout.COLUMNS_FIXED);
+        card.setIcon(R.drawable.nytimes);
+        card.setText(R.string.name_nytimes);
+        card.setTimestamp(R.string.url_nytimes);
+        mCards.add(card);
+    }
+
+
+    private void wearGestureHandler(int cmd) {
+        switch (cmd) {
+            case 0: //RIGHT
+                mCardScroller.setSelection(mCardScroller.getRight());
+                break;
+            case 1: //LEFT
+                mCardScroller.setSelection(mCardScroller.getLeft());
+                break;
+            case 2: //DOWN
+                finish();
+                break;
+            case 3: //UP = TAP
+
+                // Plays disallowed sound to indicate that TAP actions are not supported.
+                AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+                am.playSoundEffect(Sounds.SELECTED);
+
+                String[] url = {getString(R.string.url_google), getString(R.string.url_cnn), getString(R.string.url_nytimes)};
+                openOnlineWebsite(url[mCardScroller.getSelectedItemPosition()]);
+                break;
+        }
+    }
 
 }

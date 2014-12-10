@@ -5,4 +5,11 @@
     <string name="title_activity_main">Hello World Immersion</string>
     <string name="hello_world">Hello world!</string>
 
+    <string name="name_google">Google Website</string>
+    <string name="name_cnn">CNN Website</string>
+    <string name="name_nytimes">New York Times Website</string>
+
+    <string name="url_google">http://google.com</string>
+    <string name="url_cnn">http://cnn.com</string>
+    <string name="url_nytimes">http://nytimes.com</string>
 </resources>
