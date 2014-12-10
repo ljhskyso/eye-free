@@ -163,21 +163,21 @@ public final class R {
 		public static final int watch_card_content = 0x7f030003;
 	}
 	public static final class style {
-		public static final int CardContent = 0x7f090000;
-		public static final int CardText = 0x7f090001;
-		public static final int CardTitle = 0x7f090002;
-		public static final int DismissOverlayText = 0x7f090003;
-		public static final int TextAppearance_Wearable_Large = 0x7f090004;
-		public static final int TextAppearance_Wearable_Medium = 0x7f090005;
-		public static final int TextAppearance_Wearable_Small = 0x7f090006;
-		public static final int TextView_Large = 0x7f090007;
-		public static final int TextView_Large_Light = 0x7f090008;
-		public static final int TextView_Medium = 0x7f090009;
-		public static final int TextView_Medium_Light = 0x7f09000a;
-		public static final int TextView_Small = 0x7f09000b;
-		public static final int TextView_Small_Light = 0x7f09000c;
-		public static final int Theme_Wearable = 0x7f09000d;
-		public static final int Theme_Wearable_Modal = 0x7f09000e;
+		public static final int CardContent = 0x7f090001;
+		public static final int CardText = 0x7f090002;
+		public static final int CardTitle = 0x7f090003;
+		public static final int DismissOverlayText = 0x7f090004;
+		public static final int TextAppearance_Wearable_Large = 0x7f090005;
+		public static final int TextAppearance_Wearable_Medium = 0x7f090006;
+		public static final int TextAppearance_Wearable_Small = 0x7f090007;
+		public static final int TextView_Large = 0x7f090008;
+		public static final int TextView_Large_Light = 0x7f090009;
+		public static final int TextView_Medium = 0x7f09000a;
+		public static final int TextView_Medium_Light = 0x7f09000b;
+		public static final int TextView_Small = 0x7f09000c;
+		public static final int TextView_Small_Light = 0x7f09000d;
+		public static final int Theme_Wearable = 0x7f09000e;
+		public static final int Theme_Wearable_Modal = 0x7f09000f;
 	}
 	public static final class styleable {
 		public static final int[] BoxInsetLayout = { 0x7f010000 };

@@ -22,4 +22,4 @@
     <item android:drawable="@drawable/generic_confirmation_00191" android:duration="33"/>
     <item android:drawable="@drawable/generic_confirmation_00192" android:duration="33"/>
     <item android:drawable="@drawable/generic_confirmation_00193" android:duration="33"/>
-</animation-list><!-- From: file:/Users/WayneLI/AndroidStudioProjects/eye-free/GlassController/app/build/intermediates/exploded-aar/com.google.android.support/wearable/1.0.0/res/drawable/confirmation_animation.xml -->
+</animation-list><!-- From: file:/Users/WayneLI/AndroidStudioProjects/GlassController/app/build/intermediates/exploded-aar/com.google.android.support/wearable/1.0.0/res/drawable/confirmation_animation.xml -->

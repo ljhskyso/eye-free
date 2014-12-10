@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -28,7 +29,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         container = (GestureContainer) findViewById(R.id.gesture_container);
         //Always make sure that Bluetooth server is discoverable during listening...
-        new Thread(writter).start();
+        new Thread(connectWritter).start();
     }
 
     @Override
@@ -44,13 +45,13 @@ public class MainActivity extends Activity {
     }
 
     private BluetoothSocket socket;
-    private OutputStreamWriter os;
+    private static OutputStreamWriter os;
 
-    private Runnable writter = new Runnable() {
+    private Runnable connectWritter = new Runnable() {
 
         @Override
         public void run() {
-            UUID uuid = UUID.fromString("4e5d48e0-75df-11e3-981f-0800200c9a66");
+            UUID uuid = UUID.fromString("4e5d48e0-75df-11e3-981f-0800200c9a65");
             try {
                 BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();;
                 Set<BluetoothDevice> pairedDevices = adapter.getBondedDevices();
@@ -63,24 +64,6 @@ public class MainActivity extends Activity {
                         socket.connect();
                         Log.e("Client tracking", "Connected...");
                         os = new OutputStreamWriter(socket.getOutputStream());
-                        android.util.Log.e("Client tracking", "Writing started");
-                        while(CONTINUE_READ_WRITE){
-                            try {
-                                os.write("Message to Sever " + "move" + "\n");
-                                os.flush();
-                                Thread.sleep(2000);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-
-                            //Show message on UIThread
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(MainActivity.this, "move", Toast.LENGTH_LONG).show();
-                                }
-                            });
-                        }
                     }
                 }
 
@@ -88,4 +71,16 @@ public class MainActivity extends Activity {
             } catch (Exception e) {e.printStackTrace();}
         }
     };
+
+    public static void writeToServer(String output) {
+        try {
+            if (os != null) {
+                os.write(output + "\n");
+                os.flush();
+                Thread.sleep(2000);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

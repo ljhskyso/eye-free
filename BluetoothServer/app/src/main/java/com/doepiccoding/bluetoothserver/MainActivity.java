@@ -32,37 +32,42 @@ public class MainActivity extends Activity {
 		super.onActivityResult(requestCode, resultCode, data);
 		android.util.Log.e("TrackingFlow", "Creating thread to start listening...");
 		new Thread(reader).start();
+        new Thread(connectWritter).start();
 	}
 	
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		if(socket != null){
+		if(writter_socket != null){
 			try{
-				is.close();
 				os.close();
-				socket.close();
+                writter_socket.close();
 			}catch(Exception e){}
-			CONTINUE_READ_WRITE = false;
 		}
+        if(reader_socket != null){
+            try{
+                is.close();
+                reader_socket.close();
+            }catch(Exception e){}
+        }
+        CONTINUE_READ_WRITE = false;
 	}
 	
-	private BluetoothSocket socket;
+	private BluetoothSocket reader_socket;
+    private BluetoothSocket writter_socket;
 	private InputStream is;
 	private OutputStreamWriter os;
 	private Runnable reader = new Runnable() {
 		public void run() {
 			BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
-			UUID uuid = UUID.fromString("4e5d48e0-75df-11e3-981f-0800200c9a66");
+			UUID uuid = UUID.fromString("4e5d48e0-75df-11e3-981f-0800200c9a65");
 			try {
 				BluetoothServerSocket serverSocket = adapter.listenUsingRfcommWithServiceRecord("BLTServer", uuid);
-				android.util.Log.e("TrackingFlow", "Listening...");
-				socket = serverSocket.accept();
-				android.util.Log.e("TrackingFlow", "Socket accepted...");
-				is = socket.getInputStream();
-				os = new OutputStreamWriter(socket.getOutputStream());
-				new Thread(writter).start();
-				
+				android.util.Log.e("Reader", "Listening...");
+                reader_socket = serverSocket.accept();
+				android.util.Log.e("Reader", "Socket accepted...");
+				is = reader_socket.getInputStream();
+                android.util.Log.e("Reader", "Start reading...");
 				int bufferSize = 1024;
 				int bytesRead = -1;
 				byte[] buffer = new byte[bufferSize];
@@ -78,34 +83,47 @@ public class MainActivity extends Activity {
 						}
 						result = result + new String(buffer, 0, bytesRead - 1);
 						sb.append(result);
+                        if (writter_socket != null) {
+                            Writter writter = new Writter(sb.toString());
+                            new Thread(writter).start();
+                        }
 					}
-					android.util.Log.e("TrackingFlow", "Read: " + sb.toString());
-					//Show message on UIThread
-					runOnUiThread(new Runnable() {	
-						@Override
-						public void run() {
-							Toast.makeText(MainActivity.this, sb.toString(), Toast.LENGTH_LONG).show();
-						}
-					});
+					android.util.Log.e("Reader", "Message from Client " + sb.toString());
 				}
 			} catch (IOException e) {e.printStackTrace();}
 		}
 	};
-	
-	private Runnable writter = new Runnable() {
-		
-		@Override
-		public void run() {
-			int index = 0;
-			while(CONTINUE_READ_WRITE){
-				try {
-					os.write("Message From Server" + (index++) + "\n");
-					os.flush();
-					Thread.sleep(2000);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	};
+
+    private Runnable connectWritter = new Runnable() {
+        @Override
+        public void run() {
+            try {
+                BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
+                UUID uuid = UUID.fromString("4e5d48e0-75df-11e3-981f-0800200c9a66");
+                BluetoothServerSocket serverSocket = adapter.listenUsingRfcommWithServiceRecord("BLTServer", uuid);
+                android.util.Log.e("Writter", "Listening...");
+                writter_socket = serverSocket.accept();
+                android.util.Log.e("Writter", "Socket accepted...");
+                os = new OutputStreamWriter(writter_socket.getOutputStream());
+            } catch(IOException e) {e.printStackTrace();}
+        }
+    };
+
+    private class Writter implements Runnable {
+        String output;
+        Writter(String output) {
+            this.output = output;
+        }
+
+        @Override
+        public void run() {
+            try {
+                os.write(this.output + "\n");
+                os.flush();
+                Thread.sleep(2000);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

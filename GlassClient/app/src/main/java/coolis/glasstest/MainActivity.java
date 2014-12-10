@@ -124,7 +124,7 @@ public class MainActivity extends Activity {
 
         @Override
         public void run() {
-            UUID uuid = UUID.fromString("400001101-0000-1000-8000-00805F9B34FB");
+            UUID uuid = UUID.fromString("4e5d48e0-75df-11e3-981f-0800200c9a66");
             try {
                 BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();;
                 Set<BluetoothDevice> pairedDevices = adapter.getBondedDevices();
