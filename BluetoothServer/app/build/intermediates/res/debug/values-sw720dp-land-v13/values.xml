@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/WayneLI/AndroidStudioProjects/eye-free/BluetoothServer/app/src/main/res/values-sw720dp-land/dimens.xml -->
+    <!-- From: file:/Users/ljhskyso/Documents/Cornell%20Tech/CS5454%20-%20Mobile/FinalProject/eye-free/BluetoothServer/app/src/main/res/values-sw720dp-land/dimens.xml -->
     <eat-comment/>
     <dimen name="activity_horizontal_margin">128dp</dimen>
 </resources>

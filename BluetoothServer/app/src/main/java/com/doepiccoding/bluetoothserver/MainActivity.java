@@ -14,6 +14,10 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
+
+
+    private static final String[] WEAR_GESTURE_CODE = {"RIGHT", "LEFT", "DOWN", "UP"};
+    private Toast toast;
 	
 	private static final int DISCOVERABLE_REQUEST_CODE = 0x1;
 	private boolean CONTINUE_READ_WRITE = true;
@@ -25,7 +29,11 @@ public class MainActivity extends Activity {
 		//Always make sure that Bluetooth server is discoverable during listening...
 		Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
 		startActivityForResult(discoverableIntent, DISCOVERABLE_REQUEST_CODE);
-	}
+
+        toast = Toast.makeText(MainActivity.this, "Starting the APP...", Toast.LENGTH_LONG);
+        toast.show();
+
+    }
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -89,6 +97,22 @@ public class MainActivity extends Activity {
                         }
 					}
 					android.util.Log.e("Reader", "Message from Client " + sb.toString());
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            String s = "Receive command: " + WEAR_GESTURE_CODE[Integer.parseInt(sb.toString())];
+
+                            if (toast.getView().getWindowToken() != null) {
+                                toast.cancel();
+                            }
+
+                            toast.setText(s);
+                            toast.show();
+                        }
+                    });
+
 				}
 			} catch (IOException e) {e.printStackTrace();}
 		}
@@ -120,7 +144,7 @@ public class MainActivity extends Activity {
             try {
                 os.write(this.output + "\n");
                 os.flush();
-                Thread.sleep(2000);
+                Thread.sleep(500);
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -1,2 +1,2 @@
-/Users/WayneLI/AndroidStudioProjects/eye-free/BluetoothServer/app/build/intermediates/classes/debug
-/Users/WayneLI/AndroidStudioProjects/eye-free/BluetoothServer/app/build/intermediates/pre-dexed/debug/support-v4-18.0.0-3e1ce7a0694da802013d4121922085dac8218284.jar
+/Users/ljhskyso/Documents/Cornell Tech/CS5454 - Mobile/FinalProject/eye-free/BluetoothServer/app/build/intermediates/classes/debug
+/Users/ljhskyso/Documents/Cornell Tech/CS5454 - Mobile/FinalProject/eye-free/BluetoothServer/app/build/intermediates/pre-dexed/debug/support-v4-18.0.0-6fd67c7c4a2d4e610104e5b5ba3d7235e7e2de72.jar

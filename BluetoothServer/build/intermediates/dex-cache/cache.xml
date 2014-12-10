@@ -2,11 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/Users/WayneLI/Developer/Android_SDK/sdk/extras/android/m2repository/com/android/support/support-v4/18.0.0/support-v4-18.0.0.jar"
+        jar="/Users/ljhskyso/Downloads/IDEs/adt-bundle-mac-x86_64-20140702/sdk/extras/android/m2repository/com/android/support/support-v4/18.0.0/support-v4-18.0.0.jar"
         jumboMode="false"
         revision="21.1.1"
         sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
-        <dex dex="/Users/WayneLI/AndroidStudioProjects/BluetoothServer/app/build/intermediates/pre-dexed/debug/support-v4-18.0.0-3e1ce7a0694da802013d4121922085dac8218284.jar" />
+        <dex dex="/Users/ljhskyso/Documents/Cornell Tech/CS5454 - Mobile/FinalProject/eye-free/BluetoothServer/app/build/intermediates/pre-dexed/debug/support-v4-18.0.0-6fd67c7c4a2d4e610104e5b5ba3d7235e7e2de72.jar" />
     </item>
 
 </items>
