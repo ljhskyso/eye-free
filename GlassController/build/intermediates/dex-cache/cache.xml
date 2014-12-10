@@ -2,53 +2,53 @@
 <items version="2" >
 
     <item
-        jar="/Users/WayneLI/AndroidStudioProjects/GlassController/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/classes.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="8694693636ab36910c8100ce527c258ff3ebece0">
-        <dex dex="/Users/WayneLI/AndroidStudioProjects/GlassController/app/build/intermediates/pre-dexed/debug/classes-98801e9668addbeff5624ef82eca4a6d9acbcb68.jar" />
-    </item>
-    <item
-        jar="/Users/WayneLI/AndroidStudioProjects/GlassController/app/build/intermediates/exploded-aar/com.android.support/support-v13/20.0.0/classes.jar"
+        jar="/Users/ljhskyso/Documents/Cornell Tech/CS5454 - Mobile/FinalProject/eye-free/GlassController/app/build/intermediates/exploded-aar/com.android.support/support-v13/20.0.0/classes.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="e128103d5281ddd26195a7f980b36d0d005a4e56">
-        <dex dex="/Users/WayneLI/AndroidStudioProjects/GlassController/app/build/intermediates/pre-dexed/debug/classes-54026ec1017abe88adaca0b5dd0ee59e6930170a.jar" />
+        <dex dex="/Users/ljhskyso/Documents/Cornell Tech/CS5454 - Mobile/FinalProject/eye-free/GlassController/app/build/intermediates/pre-dexed/debug/classes-167f73d6226cf124f80948987a005b24712b6acb.jar" />
     </item>
     <item
-        jar="/Users/WayneLI/AndroidStudioProjects/GlassController/app/build/intermediates/exploded-aar/com.android.support/support-v13/20.0.0/libs/internal_impl-20.0.0.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="27bbd3982cdfe4468a9bf99c8c773734a9049e33">
-        <dex dex="/Users/WayneLI/AndroidStudioProjects/GlassController/app/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-f692e304a7256c034f15f9cba3799fcecfc1c2fa.jar" />
-    </item>
-    <item
-        jar="/Users/WayneLI/AndroidStudioProjects/GlassController/app/build/intermediates/exploded-aar/com.google.android.support/wearable/1.0.0/classes.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="6804efbb78d7facc2e1aa107c7342bee83afae45">
-        <dex dex="/Users/WayneLI/AndroidStudioProjects/GlassController/app/build/intermediates/pre-dexed/debug/classes-9105bd99f3be52fc098c07e4193acbd440ae121c.jar" />
-    </item>
-    <item
-        jar="/Users/WayneLI/Developer/Android_SDK/sdk/extras/android/m2repository/com/android/support/support-annotations/20.0.0/support-annotations-20.0.0.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa">
-        <dex dex="/Users/WayneLI/AndroidStudioProjects/GlassController/app/build/intermediates/pre-dexed/debug/support-annotations-20.0.0-43befc63ce765aa3c7248d2ad799b8d3742ce9ff.jar" />
-    </item>
-    <item
-        jar="/Users/WayneLI/AndroidStudioProjects/GlassController/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/6.1.71/classes.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="4ece008bb37e92b9323ee6259cbf4d4583052f9e">
-        <dex dex="/Users/WayneLI/AndroidStudioProjects/GlassController/app/build/intermediates/pre-dexed/debug/classes-5bea0b60095586433c5cbce42f3f59b67c20640b.jar" />
-    </item>
-    <item
-        jar="/Users/WayneLI/AndroidStudioProjects/GlassController/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/libs/internal_impl-20.0.0.jar"
+        jar="/Users/ljhskyso/Documents/Cornell Tech/CS5454 - Mobile/FinalProject/eye-free/GlassController/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/libs/internal_impl-20.0.0.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d">
-        <dex dex="/Users/WayneLI/AndroidStudioProjects/GlassController/app/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-10712ad3945b5320da01ea1a1d04c82d4fe7816b.jar" />
+        <dex dex="/Users/ljhskyso/Documents/Cornell Tech/CS5454 - Mobile/FinalProject/eye-free/GlassController/app/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-feacbb9a4135b21d6677021ff59cc31cd0faee30.jar" />
+    </item>
+    <item
+        jar="/Users/ljhskyso/Documents/Cornell Tech/CS5454 - Mobile/FinalProject/eye-free/GlassController/app/build/intermediates/exploded-aar/com.android.support/support-v13/20.0.0/libs/internal_impl-20.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="27bbd3982cdfe4468a9bf99c8c773734a9049e33">
+        <dex dex="/Users/ljhskyso/Documents/Cornell Tech/CS5454 - Mobile/FinalProject/eye-free/GlassController/app/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-4f18810a63d25ab1795f10bfb1ed57f78052daf2.jar" />
+    </item>
+    <item
+        jar="/Users/ljhskyso/Documents/Cornell Tech/CS5454 - Mobile/FinalProject/eye-free/GlassController/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="8694693636ab36910c8100ce527c258ff3ebece0">
+        <dex dex="/Users/ljhskyso/Documents/Cornell Tech/CS5454 - Mobile/FinalProject/eye-free/GlassController/app/build/intermediates/pre-dexed/debug/classes-8110f94721422fea63612467a2f3c2202a852f1d.jar" />
+    </item>
+    <item
+        jar="/Users/ljhskyso/Documents/Cornell Tech/CS5454 - Mobile/FinalProject/eye-free/GlassController/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/6.1.71/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="4ece008bb37e92b9323ee6259cbf4d4583052f9e">
+        <dex dex="/Users/ljhskyso/Documents/Cornell Tech/CS5454 - Mobile/FinalProject/eye-free/GlassController/app/build/intermediates/pre-dexed/debug/classes-9b7d34ab1eac424e79c62aa90b57857169fd2d71.jar" />
+    </item>
+    <item
+        jar="/Users/ljhskyso/Downloads/IDEs/adt-bundle-mac-x86_64-20140702/sdk/extras/android/m2repository/com/android/support/support-annotations/20.0.0/support-annotations-20.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa">
+        <dex dex="/Users/ljhskyso/Documents/Cornell Tech/CS5454 - Mobile/FinalProject/eye-free/GlassController/app/build/intermediates/pre-dexed/debug/support-annotations-20.0.0-a067192922b653aafb8e2daa673edbb2193a350c.jar" />
+    </item>
+    <item
+        jar="/Users/ljhskyso/Documents/Cornell Tech/CS5454 - Mobile/FinalProject/eye-free/GlassController/app/build/intermediates/exploded-aar/com.google.android.support/wearable/1.0.0/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="6804efbb78d7facc2e1aa107c7342bee83afae45">
+        <dex dex="/Users/ljhskyso/Documents/Cornell Tech/CS5454 - Mobile/FinalProject/eye-free/GlassController/app/build/intermediates/pre-dexed/debug/classes-dfb4892819b160cb8ae535724703a21919355f3e.jar" />
     </item>
 
 </items>

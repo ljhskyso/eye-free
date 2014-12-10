@@ -8,4 +8,4 @@
     android:layout_height="fill_parent"
     android:background="#FFFFFF"
     tools:context=".MainActivity"
-    tools:deviceIds="wear"/><!-- From: file:/Users/WayneLI/AndroidStudioProjects/GlassController/app/src/main/res/layout/activity_main.xml -->
+    tools:deviceIds="wear"/><!-- From: file:/Users/ljhskyso/Documents/Cornell%20Tech/CS5454%20-%20Mobile/FinalProject/eye-free/GlassController/app/src/main/res/layout/activity_main.xml -->

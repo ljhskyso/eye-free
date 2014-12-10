@@ -77,7 +77,7 @@ public class MainActivity extends Activity {
             if (os != null) {
                 os.write(output + "\n");
                 os.flush();
-                Thread.sleep(2000);
+                Thread.sleep(500);
             }
         } catch (Exception e) {
             e.printStackTrace();
